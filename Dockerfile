@@ -1,17 +1,11 @@
-<<<<<<< HEAD
 FROM daocloud.io/library/centos:latest
 MAINTAINER mloves0824 "mloves0824@163.com"
-=======
-FROM centos:latest
-MAINTAINER ystyle "lxy5266@live.com"
->>>>>>> 1c8556c6fbe996806b9f9ccb7c7e2ca0e4c4ed7b
 #RUN yum -y groupinstall 'Development Tools' && yum -y install zlib-devel wget fuse-devel git psmisc &&\
 #    cd / && git clone https://github.com/baidu/bfs.git &&\
     # sed -i '4a FUSE_PATH=/usr/include/fuse/' /bfs/Makefile &&\
 #    cd /bfs && ./build.sh && cd sandbox && ./deploy.sh &&\
 #    yum -y groupremove 'Development Tools' && yum clean all &&\
 #    cd ../ && rm -rf thirdparty thirdsrc .build .git src
-<<<<<<< HEAD
 
 RUN yum -y install zlib-devel wget fuse-devel git psmisc
 RUN mkdir -p /root/bfs
@@ -20,15 +14,4 @@ ADD sandbox /root/bfs/sandbox
 RUN cd /root/bfs/sandbox && ./deploy.sh
 EXPOSE 8827 8828 8829
 WORKDIR /root/bfs/sandbox/
-=======
-RUN yum -y groupinstall 'Development Tools'
-RUN yum -y install zlib-devel wget fuse-devel git psmisc
-RUN cd / && git clone https://github.com/baidu/bfs.git
-RUN cd /bfs && ./build.sh && cd sandbox && ./deploy.sh
-RUN yum -y groupremove 'Development Tools' && yum clean all
-RUN cd ../ && rm -rf thirdparty thirdsrc .build .git src
-
-EXPOSE 8827 8828 8829
-WORKDIR /bfs/sandbox/
->>>>>>> 1c8556c6fbe996806b9f9ccb7c7e2ca0e4c4ed7b
 CMD ./start_bfs.sh && tail -f /dev/null
